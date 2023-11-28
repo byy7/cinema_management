@@ -34,7 +34,7 @@
             <!-- Sidebar Menu Start -->
             <ul class="navbar-nav iq-main-menu" id="sidebar-menu">
                 <li class="nav-item">
-                    <a class="nav-link {{ Request::is('/') ? 'active' : '' }}" aria-current="page"
+                    <a class="nav-link {{ Request::is('admin') ? 'active' : '' }}" aria-current="page"
                         href="{{ route('home') }}">
                         <i class="icon">
                             <svg width="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"
@@ -51,7 +51,7 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link {{ Request::is('film*') ? 'active' : '' }} {{ Request::is('studio*') ? 'active' : '' }} {{ Request::is('teater*') ? 'active' : '' }}"
+                    <a class="nav-link {{ Request::is('film*') ? 'active' : '' }} {{ Request::is('studio*') ? 'active' : '' }} {{ Request::is('teater*') ? 'active' : '' }} {{ Request::is('pemesanan*') ? 'active' : '' }} {{ Request::is('jadwal_tayang*') ? 'active' : '' }}"
                         data-bs-toggle="collapse" href="#horizontal-menu" role="button" aria-expanded="false"
                         aria-controls="horizontal-menu">
                         <i class="icon">
@@ -98,22 +98,8 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link {{ Request::is('studio') ? 'active' : '' }}" href="">
-                                <i class="icon svg-icon">
-                                    <svg class="icon-10" xmlns="http://www.w3.org/2000/svg" width="10"
-                                        viewBox="0 0 24 24" fill="currentColor">
-                                        <g>
-                                            <circle cx="12" cy="12" r="8"
-                                                fill="currentColor"></circle>
-                                        </g>
-                                    </svg>
-                                </i>
-                                <i class="sidenav-mini-icon"> S </i>
-                                <span class="item-name">Studio</span>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link {{ Request::is('teater') ? 'active' : '' }}" href="">
+                            <a class="nav-link {{ Request::is('teater*') ? 'active' : '' }}"
+                                href="{{ route('teater.index') }}">
                                 <i class="icon svg-icon">
                                     <svg class="icon-10" xmlns="http://www.w3.org/2000/svg" width="10"
                                         viewBox="0 0 24 24" fill="currentColor">
@@ -128,7 +114,8 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link {{ Request::is('kursi') ? 'active' : '' }}" href="">
+                            <a class="nav-link {{ Request::is('studio*') ? 'active' : '' }}"
+                                href="{{ route('studio.index') }}">
                                 <i class="icon svg-icon">
                                     <svg class="icon-10" xmlns="http://www.w3.org/2000/svg" width="10"
                                         viewBox="0 0 24 24" fill="currentColor">
@@ -138,12 +125,13 @@
                                         </g>
                                     </svg>
                                 </i>
-                                <i class="sidenav-mini-icon"> K </i>
-                                <span class="item-name">Kursi</span>
+                                <i class="sidenav-mini-icon"> S </i>
+                                <span class="item-name">Studio</span>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link {{ Request::is('jadwal_tayang') ? 'active' : '' }}" href="">
+                            <a class="nav-link {{ Request::is('jadwal_tayang*') ? 'active' : '' }}"
+                                href="{{ route('jadwal_tayang.index') }}">
                                 <i class="icon svg-icon">
                                     <svg class="icon-10" xmlns="http://www.w3.org/2000/svg" width="10"
                                         viewBox="0 0 24 24" fill="currentColor">
@@ -158,7 +146,8 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link {{ Request::is('pemesanan') ? 'active' : '' }}" href="">
+                            <a class="nav-link {{ Request::is('pemesanan*') ? 'active' : '' }}"
+                                href="{{ route('pemesanan.index') }}">
                                 <i class="icon svg-icon">
                                     <svg class="icon-10" xmlns="http://www.w3.org/2000/svg" width="10"
                                         viewBox="0 0 24 24" fill="currentColor">
@@ -173,7 +162,8 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link {{ Request::is('pengguna') ? 'active' : '' }}" href="">
+                            <a class="nav-link {{ Request::is('pengguna*') ? 'active' : '' }}"
+                                href="{{ route('pengguna.index') }}">
                                 <i class="icon">
                                     <svg class="icon-10" xmlns="http://www.w3.org/2000/svg" width="10"
                                         viewBox="0 0 24 24" fill="currentColor">

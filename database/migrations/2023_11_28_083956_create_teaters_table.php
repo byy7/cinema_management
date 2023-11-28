@@ -13,7 +13,6 @@ return new class extends Migration
     {
         Schema::create('teaters', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('id_film')->constrained('films')->cascadeOnUpdate()->cascadeOnDelete();
             $table->string('nama');
             $table->string('gambar');
             $table->timestamps();

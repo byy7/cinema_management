@@ -8,6 +8,9 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\FilmController;
 use App\Http\Controllers\StudioController;
 use App\Http\Controllers\TeaterController;
+use App\Http\Controllers\JadwalTayangController;
+use App\Http\Controllers\PemesananController;
+use App\Http\Controllers\PenggunaController;
 
 
 /*
@@ -31,11 +34,16 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/home', [HomeController::class, 'index'])->name('home');
 
     Route::middleware(['admin'])->group(function () {
-        Route::get('admin', [AdminController::class, 'index'])->name('admin');
+        Route::get('/admin', [AdminController::class, 'index'])->name('admin');
+        Route::get('/pengguna', [PenggunaController::class, 'index'])->name('pengguna.index');
         Route::resource('film', FilmController::class);
+        Route::resource('teater', TeaterController::class);
+        Route::resource('studio', StudioController::class);
+        Route::resource('jadwal_tayang', JadwalTayangController::class);
+        Route::resource('pemesanan', PemesananController::class);
     });
 
     Route::middleware(['user'])->group(function () {
-        Route::get('user', [UserController::class, 'index'])->name('user');
+        Route::get('/user', [UserController::class, 'index'])->name('user');
     });
 });
