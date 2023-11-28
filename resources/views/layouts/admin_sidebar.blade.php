@@ -51,7 +51,7 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link {{ Request::is('products') ? 'active' : '' }} {{ Request::is('suppliers') ? 'active' : '' }} {{ Request::is('users') ? 'active' : '' }}"
+                    <a class="nav-link {{ Request::is('film*') ? 'active' : '' }} {{ Request::is('studio*') ? 'active' : '' }} {{ Request::is('teater*') ? 'active' : '' }}"
                         data-bs-toggle="collapse" href="#horizontal-menu" role="button" aria-expanded="false"
                         aria-controls="horizontal-menu">
                         <i class="icon">
@@ -82,7 +82,8 @@
                     </a>
                     <ul class="sub-nav collapse" id="horizontal-menu" data-bs-parent="#sidebar-menu">
                         <li class="nav-item">
-                            <a class="nav-link {{ Request::is('film') ? 'active' : '' }}" href="">
+                            <a class="nav-link {{ Request::is('film*') ? 'active' : '' }}"
+                                href="{{ route('film.index') }}">
                                 <i class="icon">
                                     <svg class="icon-10" xmlns="http://www.w3.org/2000/svg" width="10"
                                         viewBox="0 0 24 24" fill="currentColor">
@@ -168,7 +169,7 @@
                                     </svg>
                                 </i>
                                 <i class="sidenav-mini-icon"> P </i>
-                                <span class="item-name">Pemesanan   </span>
+                                <span class="item-name">Pemesanan </span>
                             </a>
                         </li>
                         <li class="nav-item">

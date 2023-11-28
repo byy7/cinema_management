@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Film;
 use Illuminate\Http\Request;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class FilmController extends Controller
 {
@@ -12,7 +13,14 @@ class FilmController extends Controller
      */
     public function index()
     {
-        //
+        // Confirm Delete Alert
+        $title = 'Hapus Data!';
+        $text = "Apakah yakin ingin menghapus data? Data yang dihapus tidak dapat dikembalikan";
+        confirmDelete($title, $text);
+
+        $films = Film::all();
+
+        return view('admin.film.index', compact('films'));
     }
 
     /**
@@ -20,7 +28,7 @@ class FilmController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.film.create');
     }
 
     /**
@@ -28,7 +36,28 @@ class FilmController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'kode' => 'required',
+            'judul' => 'required',
+            'sinopsis' => 'required',
+            'durasi' => 'required',
+            'gambar' => 'required|mimes:jpg,jpeg,png | max:1024'
+        ]);
+
+        $input = $request->all();
+
+        if ($file = $request->file('gambar')) {
+            $destinationPath = 'assets/images/';
+            $fileName = date('YmdHis') . "." . $file->getClientOriginalExtension();
+            $file->move($destinationPath, $fileName);
+            $input['gambar'] = "$fileName";
+        }
+
+        Film::create($input);
+
+        Alert::toast('Data Berhasil Disimpan', 'success');
+
+        return redirect()->route('film.index');
     }
 
     /**
@@ -44,7 +73,7 @@ class FilmController extends Controller
      */
     public function edit(Film $film)
     {
-        //
+        return view('admin.film.edit', compact('film'));
     }
 
     /**
@@ -52,7 +81,40 @@ class FilmController extends Controller
      */
     public function update(Request $request, Film $film)
     {
-        //
+        $request->validate([
+            'kode' => 'required',
+            'judul' => 'required',
+            'sinopsis' => 'required',
+            'durasi' => 'required',
+            'gambar' => 'mimes:jpg,jpeg,png | max:1024'
+        ]);
+
+        $input = $request->all();
+
+        if ($file = $request->file('gambar')) {
+            // Remove Old File
+            if (!empty($film['gambar'])) {
+                $file = 'assets/images/' . $film['gambar'];
+
+                if (file_exists($file)) {
+                    unlink($file);
+                }
+            }
+
+            // Store New File
+            $destinationPath = 'assets/images/';
+            $fileName = date('YmdHis') . "." . $file->getClientOriginalExtension();
+            $file->move($destinationPath, $fileName);
+            $input['gambar'] = $fileName;
+        } else {
+            unset($input['gambar']);
+        }
+
+        $film->update($input);
+
+        Alert::toast('Data Berhasil Diperbarui', 'success');
+
+        return redirect()->route('film.index');
     }
 
     /**
@@ -60,6 +122,16 @@ class FilmController extends Controller
      */
     public function destroy(Film $film)
     {
-        //
+        $file = 'assets/images/' . $film['gambar'];
+
+        if (file_exists($file)) {
+            @unlink($file);
+        }
+
+        $film->delete();
+
+        Alert::toast('Data Berhasil Dihapus', 'success');
+
+        return redirect()->route('film.index');
     }
 }

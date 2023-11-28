@@ -11,7 +11,7 @@
                                 <div class="progress-widget">
                                     <div class="progress-detail">
                                         <p class="mb-2">Total Studio</p>
-                                        <h4 class="counter">$560K</h4>
+                                        <h4 class="counter">{{ $totalStudio }}</h4>
                                     </div>
                                 </div>
                             </div>
@@ -21,7 +21,7 @@
                                 <div class="progress-widget">
                                     <div class="progress-detail">
                                         <p class="mb-2">Total Film</p>
-                                        <h4 class="counter"></h4>
+                                        <h4 class="counter">{{ $totalFilm }}</h4>
                                     </div>
                                 </div>
                             </div>
@@ -31,7 +31,7 @@
                                 <div class="progress-widget">
                                     <div class="progress-detail">
                                         <p class="mb-2">Total Teater</p>
-                                        <h4 class="counter">$375K</h4>
+                                        <h4 class="counter">{{ $totalTeater }}</h4>
                                     </div>
                                 </div>
                             </div>

@@ -14,10 +14,10 @@ return new class extends Migration
         Schema::create('films', function (Blueprint $table) {
             $table->id();
             $table->string('kode');
-            $table->string('gambar');
             $table->string('judul');
             $table->text('sinopsis');
             $table->integer('durasi');
+            $table->string('gambar');
             $table->timestamps();
         });
     }

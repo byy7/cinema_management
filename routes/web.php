@@ -5,6 +5,9 @@ use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\FilmController;
+use App\Http\Controllers\StudioController;
+use App\Http\Controllers\TeaterController;
 
 
 /*
@@ -29,6 +32,7 @@ Route::middleware(['auth'])->group(function () {
 
     Route::middleware(['admin'])->group(function () {
         Route::get('admin', [AdminController::class, 'index'])->name('admin');
+        Route::resource('film', FilmController::class);
     });
 
     Route::middleware(['user'])->group(function () {
