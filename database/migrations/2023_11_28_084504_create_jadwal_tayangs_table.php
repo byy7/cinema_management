@@ -18,7 +18,7 @@ return new class extends Migration
             $table->foreignId('id_teater')->constrained('teaters')->cascadeOnUpdate()->cascadeOnDelete();
             $table->date('tanggal_tayang');
             $table->time('waktu_mulai');
-            $table->time('waktu_selesai');
+            $table->time('waktu_selesai');      
             $table->float('harga');
             $table->timestamps();
         });

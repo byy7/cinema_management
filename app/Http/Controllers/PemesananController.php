@@ -12,7 +12,9 @@ class PemesananController extends Controller
      */
     public function index()
     {
-        //
+        $pemesanans = Pemesanan::all();
+
+        return view('admin.pemesanan.index', compact('pemesanans'));
     }
 
     /**

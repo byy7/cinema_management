@@ -33,7 +33,7 @@
                                 <div class="form-group">
                                     <label class="form-label" for="gambar">Nama : </label>
                                     <input type="text" name="nama" class="form-control" id="nama"
-                                        value="{{ $studio->nama }}">
+                                        value="{{ $studio->nama }}" >
                                     @error('nama')
                                         <span class="text-danger">{{ $message }}</span>
                                     @enderror

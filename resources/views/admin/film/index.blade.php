@@ -29,12 +29,12 @@
                                 </tr>
                             </thead>
                             <tbody>
+                                @php
+                                    $i = 1;
+                                @endphp
                                 @foreach ($films as $item)
-                                    @php
-                                        $i = 0;
-                                    @endphp
                                     <tr>
-                                        <td>{{ ++$i }}</td>
+                                        <td>{{ $i++ }}</td>
                                         <td>
                                             <a href="{{ route('film.edit', $item->id) }}"
                                                 class="btn btn-warning btn-sm">Edit</a>

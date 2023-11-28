@@ -157,8 +157,8 @@
                                         </g>
                                     </svg>
                                 </i>
-                                <i class="sidenav-mini-icon"> P </i>
-                                <span class="item-name">Pemesanan </span>
+                                <i class="sidenav-mini-icon"> RP </i>
+                                <span class="item-name">Riwayat Pesanan </span>
                             </a>
                         </li>
                         <li class="nav-item">

@@ -27,12 +27,12 @@
                                 </tr>
                             </thead>
                             <tbody>
+                                @php
+                                    $i = 1;
+                                @endphp
                                 @foreach ($teaters as $item)
-                                    @php
-                                        $i = 0;
-                                    @endphp
                                     <tr>
-                                        <td>{{ ++$i }}</td>
+                                        <td>{{ $i++ }}</td>
                                         <td>
                                             <a href="{{ route('teater.edit', $item->id) }}"
                                                 class="btn btn-warning btn-sm">Edit</a>
