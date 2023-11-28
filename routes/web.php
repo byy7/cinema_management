@@ -39,6 +39,8 @@ Route::middleware(['auth'])->group(function () {
         Route::resource('film', FilmController::class);
         Route::resource('teater', TeaterController::class);
         Route::resource('studio', StudioController::class);
+        Route::delete('/destroy_kursi/{id}', [StudioController::class, 'destroy_kursi'])->name('destroy_kursi');
+        Route::post('/store_kursi', [StudioController::class, 'store_kursi'])->name('store_kursi');
         Route::resource('jadwal_tayang', JadwalTayangController::class);
         Route::resource('pemesanan', PemesananController::class);
     });
