@@ -23,46 +23,23 @@
             </div>
 
             <div class="row">
-                <div class="col-md-6 col-lg-3 d-flex align-items-stretch mb-5 mb-lg-0" data-aos="fade-up"
-                    data-aos-delay="100">
-                    <div class="icon-box">
-                        <div class="icon"><i class="bx bxl-dribbble"></i></div>
-                        <h4 class="title"><a href="">Lorem Ipsum</a></h4>
-                        <p class="description">Voluptatum deleniti atque corrupti quos dolores et quas molestias
-                            excepturi</p>
+                @forelse ($teaters as $item)
+                    <div class="col-md-6 col-lg-3 d-flex align-items-stretch mb-5 mb-lg-0" data-aos="fade-up"
+                        data-aos-delay="100">
+                        <div class="icon-box">
+                            <div class="icon">
+                                <img src="{{ asset('assets/images/' . $item->gambar) }}" alt="Images" class="img-fluid">
+                            </div>
+                            <h4 class="title"><a href="">Lorem Ipsum</a></h4>
+                        </div>
                     </div>
-                </div>
-
-                <div class="col-md-6 col-lg-3 d-flex align-items-stretch mb-5 mb-lg-0" data-aos="fade-up"
-                    data-aos-delay="200">
-                    <div class="icon-box">
-                        <div class="icon"><i class="bx bx-file"></i></div>
-                        <h4 class="title"><a href="">Sed ut perspiciatis</a></h4>
-                        <p class="description">Duis aute irure dolor in reprehenderit in voluptate velit esse
-                            cillum dolore</p>
+                @empty
+                    <div class="col-md-12">
+                        <div class="text-center">
+                            <h3><strong>Data Belum Tersedia</strong></h3>
+                        </div>
                     </div>
-                </div>
-
-                <div class="col-md-6 col-lg-3 d-flex align-items-stretch mb-5 mb-lg-0" data-aos="fade-up"
-                    data-aos-delay="300">
-                    <div class="icon-box">
-                        <div class="icon"><i class="bx bx-tachometer"></i></div>
-                        <h4 class="title"><a href="">Magni Dolores</a></h4>
-                        <p class="description">Excepteur sint occaecat cupidatat non proident, sunt in culpa qui
-                            officia</p>
-                    </div>
-                </div>
-
-                <div class="col-md-6 col-lg-3 d-flex align-items-stretch mb-5 mb-lg-0" data-aos="fade-up"
-                    data-aos-delay="400">
-                    <div class="icon-box">
-                        <div class="icon"><i class="bx bx-layer"></i></div>
-                        <h4 class="title"><a href="">Nemo Enim</a></h4>
-                        <p class="description">At vero eos et accusamus et iusto odio dignissimos ducimus qui
-                            blanditiis</p>
-                    </div>
-                </div>
-
+                @endforelse
             </div>
 
         </div>
@@ -78,90 +55,36 @@
 
             <div class="testimonials-slider swiper" data-aos="fade-up" data-aos-delay="100">
                 <div class="swiper-wrapper">
-                    <div class="swiper-slide">
-                        <div class="testimonial-item">
-                            <p>
-                                <i class="bx bxs-quote-alt-left quote-icon-left"></i>
-                                Proin iaculis purus consequat sem cure digni ssim donec porttitora entum suscipit
-                                rhoncus. Accusantium quam, ultricies eget id, aliquam eget nibh et. Maecen aliquam,
-                                risus at semper.
-                                <i class="bx bxs-quote-alt-right quote-icon-right"></i>
-                            </p>
-                            <img src="{{ asset('bikin/img/testimonials/testimonials-1.jpg') }}" class="testimonial-img"
-                                alt="">
-                            <h3>Saul Goodman</h3>
-                            <h4>Ceo &amp; Founder</h4>
-                        </div>
-                    </div><!-- End testimonial item -->
+                    @forelse ($listFilm as $item)
+                        <div class="swiper-slide">
+                            <div class="testimonial-item">
+                                <img src="{{ asset('assets/images/' . $item->film->gambar) }}" alt="Gambar"
+                                    class="img-fluid">
+                                <h3>{{ $item->film->judul }}</h3>
+                                <h4><b>Rp.{{ $item->harga }}</b></h4>
+                                <hr>
+                                <p style="margin: 0">Sinopsis:</p>
+                                <p align="justify">{{ $item->film->sinopsis }}</p>
+                                <h6><strong>{{ $item->teater->nama }} - {{ $item->studio->nama }}</strong></h6>
+                                <hr>
 
-                    <div class="swiper-slide">
-                        <div class="testimonial-item">
-                            <p>
-                                <i class="bx bxs-quote-alt-left quote-icon-left"></i>
-                                Export tempor illum tamen malis malis eram quae irure esse labore quem cillum quid
-                                cillum eram malis quorum velit fore eram velit sunt aliqua noster fugiat irure amet
-                                legam anim culpa.
-                                <i class="bx bxs-quote-alt-right quote-icon-right"></i>
-                            </p>
-                            <img src="{{ asset('bikin/img/testimonials/testimonials-2.jpg') }}" class="testimonial-img"
-                                alt="">
-                            <h3>Sara Wilsson</h3>
-                            <h4>Designer</h4>
+                                <h6>Tanggal {{ \Carbon\Carbon::parse($item->tanggal_tayang)->format('d/m/Y') }}</h6>
+                                <h6>Pukul {{ \Carbon\Carbon::parse($item->jam_mulai)->format('H:i') }} -
+                                    {{ \Carbon\Carbon::parse($item->jam_selesai)->format('H:i') }}</h6>
+                                <button type="button" class="btn btn-outline-primary mb-4 mt-3" data-bs-toggle="modal"
+                                    data-bs-target="#staticBackdrop">
+                                    Pesan Tiket
+                                </button>
+                            </div>
                         </div>
-                    </div><!-- End testimonial item -->
-
-                    <div class="swiper-slide">
-                        <div class="testimonial-item">
-                            <p>
-                                <i class="bx bxs-quote-alt-left quote-icon-left"></i>
-                                Enim nisi quem export duis labore cillum quae magna enim sint quorum nulla quem
-                                veniam duis minim tempor labore quem eram duis noster aute amet eram fore quis sint
-                                minim.
-                                <i class="bx bxs-quote-alt-right quote-icon-right"></i>
-                            </p>
-                            <img src="{{ asset('bikin/img/testimonials/testimonials-3.jpg') }}" class="testimonial-img"
-                                alt="">
-                            <h3>Jena Karlis</h3>
-                            <h4>Store Owner</h4>
+                    @empty
+                        <div class="text-center">
+                            <h3><strong>Data Belum Tersedia</strong></h3>
                         </div>
-                    </div><!-- End testimonial item -->
-
-                    <div class="swiper-slide">
-                        <div class="testimonial-item">
-                            <p>
-                                <i class="bx bxs-quote-alt-left quote-icon-left"></i>
-                                Fugiat enim eram quae cillum dolore dolor amet nulla culpa multos export minim
-                                fugiat minim velit minim dolor enim duis veniam ipsum anim magna sunt elit fore quem
-                                dolore labore illum veniam.
-                                <i class="bx bxs-quote-alt-right quote-icon-right"></i>
-                            </p>
-                            <img src="{{ asset('bikin/img/testimonials/testimonials-4.jpg') }}" class="testimonial-img"
-                                alt="">
-                            <h3>Matt Brandon</h3>
-                            <h4>Freelancer</h4>
-                        </div>
-                    </div><!-- End testimonial item -->
-
-                    <div class="swiper-slide">
-                        <div class="testimonial-item">
-                            <p>
-                                <i class="bx bxs-quote-alt-left quote-icon-left"></i>
-                                Quis quorum aliqua sint quem legam fore sunt eram irure aliqua veniam tempor noster
-                                veniam enim culpa labore duis sunt culpa nulla illum cillum fugiat legam esse veniam
-                                culpa fore nisi cillum quid.
-                                <i class="bx bxs-quote-alt-right quote-icon-right"></i>
-                            </p>
-                            <img src="{{ asset('bikin/img/testimonials/testimonials-5.jpg') }}" class="testimonial-img"
-                                alt="">
-                            <h3>John Larson</h3>
-                            <h4>Entrepreneur</h4>
-                        </div>
-                    </div><!-- End testimonial item -->
-
+                    @endforelse
                 </div>
                 <div class="swiper-pagination"></div>
             </div>
-
         </div>
     </section><!-- End Testimonials Section -->
 
@@ -175,9 +98,12 @@
 
             <div class="row mt-4">
                 <div class="col-xl-12 col-lg-12 col-md-6" data-aos="fade-up" data-aos-delay="100">
-                    <a href="" class="btn btn-outline-primary mb-4">Pesan Tiket</a>
+                    <button type="button" class="btn btn-outline-primary mb-4" data-bs-toggle="modal"
+                        data-bs-target="#staticBackdrop">
+                        Pesan Tiket
+                    </button>
                     <div class="table-responsive">
-                        <table class="table table-bordered table-hover" style="width: 100%">
+                        <table class="table table-bordered table-hover" style="width: 100%" id="datatable">
                             <thead>
                                 <tr>
                                     <th>No</th>
@@ -186,17 +112,24 @@
                                     <th>Studio</th>
                                     <th>Tanggal</th>
                                     <th>Harga</th>
+                                    <th>Kursi</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                </tr>
+                                @php
+                                    $i = 0;
+                                @endphp
+                                @foreach ($pemesanans as $item)
+                                    <tr>
+                                        <td>{{ $i++ }}</td>
+                                        <td>{{ $item->jadwalTayang->film->judul }}</td>
+                                        <td>{{ $item->jadwalTayang->teater->nama }}</td>
+                                        <td>{{ $item->jadwalTayang->studio->nama }}</td>
+                                        <td>{{ $item->jadwalTayang->tanggal_tayang }}</td>
+                                        <td>Rp.{{ $item->jadwalTayang->harga }}</td>
+                                        <td>{{ $item->kursi->nama }}</td>
+                                    </tr>
+                                @endforeach
                             </tbody>
                         </table>
                     </div>
@@ -204,5 +137,41 @@
             </div>
 
         </div>
-    </section><!-- End Team Section -->
+    </section>
+
+    <!-- Modal -->
+    <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+        aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="staticBackdropLabel">Pemesanan Tiket</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <form action="" method="post">
+                    @csrf
+                    <div class="modal-body">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <label for="nama">Nama</label>
+                                <input type="text" name="nama" id="nama" class="form-control".>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
+                        <button type="submit" class="btn btn-primary">Simpan</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+@endsection
+
+@section('js_after')
+    <script>
+        $(document).ready(function() {
+            $("#datatable").dataTable();
+        });
+    </script>
 @endsection
