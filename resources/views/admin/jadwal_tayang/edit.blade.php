@@ -31,17 +31,14 @@
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label class="form-label">Teater :</label>
-                                    <select name="id_teater" class="form-select select2">
-                                        @foreach ($teaters as $item2)
-                                            <option value="{{ $item2->id }}"
-                                                {{ $jadwalTayang->id_teater == $item2->id ? 'selected' : '' }}>
-                                                {{ $item2->nama }}</option>
+                                    <label class="form-label">Tipe :</label>
+                                    <select name="tipe" class="form-select select2">
+                                        @foreach (\App\Models\JadwalTayang::TYPE_SELECT as $key => $value)
+                                            <option value="{{ $key }}"
+                                                {{ $jadwalTayang->tipe == $key ? 'selected' : '' }}>{{ $value }}
+                                            </option>
                                         @endforeach
                                     </select>
-                                    @error('id_teater')
-                                        <span class="text-danger">{{ $message }}</span>
-                                    @enderror
                                 </div>
                             </div>
                             <div class="col-md-6">

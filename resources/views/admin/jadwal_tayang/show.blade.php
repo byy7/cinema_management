@@ -24,13 +24,10 @@
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label class="form-label">Teater :</label>
-                                <select name="id_film" class="form-select" disabled>
-                                    <option>{{ $jadwalTayang->teater->nama }}</option>
+                                <label class="form-label">Tipe :</label>
+                                <select name="tipe" class="form-select" disabled>
+                                    <option>{{ $jadwalTayang->tipe }}</option>
                                 </select>
-                                @error('id_teater')
-                                    <span class="text-danger">{{ $message }}</span>
-                                @enderror
                             </div>
                         </div>
                         <div class="col-md-6">

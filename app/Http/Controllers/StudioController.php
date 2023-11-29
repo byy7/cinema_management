@@ -30,9 +30,7 @@ class StudioController extends Controller
      */
     public function create()
     {
-        $teaters = Teater::all();
-
-        return view('admin.studio.create', compact('teaters'));
+        return view('admin.studio.create');
     }
 
     /**
@@ -42,10 +40,17 @@ class StudioController extends Controller
     {
         $request->validate([
             'nama' => 'required',
-            'id_teater' => 'required'
+            'denah_kursi' => 'required|mimes:jpg,jpeg,png|max:1024'
         ]);
 
         $input = $request->all();
+
+        if ($file = $request->file('denah_kursi')) {
+            $destinationPath = 'assets/images/';
+            $fileName = date('YmdHis') . "." . $file->getClientOriginalExtension();
+            $file->move($destinationPath, $fileName);
+            $input['denah_kursi'] = "$fileName";
+        }
 
         Studio::create($input);
 
@@ -72,10 +77,9 @@ class StudioController extends Controller
         $text = "Apakah yakin ingin menghapus data? Data yang dihapus tidak dapat dikembalikan";
         confirmDelete($title, $text);
 
-        $teaters = Teater::all();
         $kursis = Kursi::where('id_studio', $studio->id)->get();
 
-        return view('admin.studio.edit', compact('teaters', 'kursis', 'studio'));
+        return view('admin.studio.edit', compact('kursis', 'studio'));
     }
 
     /**
@@ -85,10 +89,29 @@ class StudioController extends Controller
     {
         $request->validate([
             'nama' => 'required',
-            'id_teater' => 'required'
+            'denah_kursi' => 'required|mimes:jpg,jpeg,png|max:1024'
         ]);
 
         $input = $request->all();
+
+        if ($file = $request->file('denah_kursi')) {
+            // Remove Old File
+            if (!empty($studio['denah_kursi'])) {
+                $file = 'assets/images/' . $studio['denah_kursi'];
+
+                if (file_exists($file)) {
+                    unlink($file);
+                }
+            }
+
+            // Store New File
+            $destinationPath = 'assets/images/';
+            $fileName = date('YmdHis') . "." . $file->getClientOriginalExtension();
+            $file->move($destinationPath, $fileName);
+            $input['denah_kursi'] = $fileName;
+        } else {
+            unset($input['denah_kursi']);
+        }
 
         $studio->update($input);
 
@@ -102,6 +125,13 @@ class StudioController extends Controller
      */
     public function destroy(Studio $studio)
     {
+
+        $file = 'assets/images/' . $studio['denah_kursi'];
+
+        if (file_exists($file)) {
+            @unlink($file);
+        }
+
         $studio->delete();
 
         Alert::toast('Data Berhasil Dihapus', 'success');
@@ -133,6 +163,6 @@ class StudioController extends Controller
 
         Alert::toast('Data Berhasil Dihapus', 'success');
 
-        return redirect()->back();  
+        return redirect()->back();
     }
 }

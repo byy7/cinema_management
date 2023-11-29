@@ -32,10 +32,9 @@ class JadwalTayangController extends Controller
     public function create()
     {
         $films = Film::all();
-        $teaters = Teater::all();
         $studios = Studio::all();
 
-        return view('admin.jadwal_tayang.create', compact('films', 'teaters', 'studios'));
+        return view('admin.jadwal_tayang.create', compact('films', 'studios'));
     }
 
     /**
@@ -45,7 +44,7 @@ class JadwalTayangController extends Controller
     {
         $request->validate([
             'id_film' => 'required',
-            'id_teater' => 'required',
+            'tipe' => 'required',
             'id_studio' => 'required',
             'tanggal_tayang' => 'required',
             'waktu_mulai' => 'required',
@@ -76,10 +75,9 @@ class JadwalTayangController extends Controller
     public function edit(JadwalTayang $jadwalTayang)
     {
         $films = Film::all();
-        $teaters = Teater::all();
         $studios = Studio::all();
 
-        return view('admin.jadwal_tayang.edit', compact('jadwalTayang', 'films', 'teaters', 'studios'));
+        return view('admin.jadwal_tayang.edit', compact('jadwalTayang', 'films', 'studios'));
     }
 
     /**
@@ -89,7 +87,7 @@ class JadwalTayangController extends Controller
     {
         $request->validate([
             'id_film' => 'required',
-            'id_teater' => 'required',
+            'tipe' => 'required',
             'id_studio' => 'required',
             'tanggal_tayang' => 'required',
             'waktu_mulai' => 'required',

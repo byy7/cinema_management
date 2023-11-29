@@ -24,8 +24,9 @@
                                     <th>No.</th>
                                     <th>Aksi</th>
                                     <th>Film</th>
-                                    <th>Teater</th>
                                     <th>Studio</th>
+                                    <th>Tipe</th>
+                                    <th>Harga</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -46,8 +47,9 @@
                                             </div>
                                         </td>
                                         <td>{{ $item->film->judul }}</td>
-                                        <td>{{ $item->teater->nama }}</td>
                                         <td>{{ $item->studio->nama }}</td>
+                                        <td>{{ $item->tipe }}</td>
+                                        <td>{{ $item->harga }}</td>
                                     </tr>
                                 @endforeach
                             </tbody>

@@ -10,7 +10,7 @@
                             <div class="card-body">
                                 <div class="progress-widget">
                                     <div class="progress-detail">
-                                        <p class="mb-2">Total Studio</p>
+                                        <p class="mb-2">Studio</p>
                                         <h4 class="counter">{{ $totalStudio }}</h4>
                                     </div>
                                 </div>
@@ -20,7 +20,7 @@
                             <div class="card-body">
                                 <div class="progress-widget">
                                     <div class="progress-detail">
-                                        <p class="mb-2">Total Film</p>
+                                        <p class="mb-2">Film</p>
                                         <h4 class="counter">{{ $totalFilm }}</h4>
                                     </div>
                                 </div>
@@ -30,8 +30,8 @@
                             <div class="card-body">
                                 <div class="progress-widget">
                                     <div class="progress-detail">
-                                        <p class="mb-2">Total Teater</p>
-                                        <h4 class="counter">{{ $totalTeater }}</h4>
+                                        <p class="mb-2">Pemesanan</p>
+                                        <h4 class="counter">{{ $totalPemesanan }}</h4>
                                     </div>
                                 </div>
                             </div>

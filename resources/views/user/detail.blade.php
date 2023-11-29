@@ -4,7 +4,7 @@
     <section id="portfolio-details" class="portfolio-details">
         <div class="container mt-5">
             <div class="row">
-                <div class="col-lg-8">
+                <div class="col-lg-8 text-center">
                     <img src="{{ asset('assets/images/' . $jadwalTayang->film->gambar) }}" alt="Gambar"
                         class="img-fluid img-thumbnail">
                 </div>
@@ -14,8 +14,8 @@
                         <ul>
                             <li><strong>Judul</strong>: {{ $jadwalTayang->film->judul }}</li>
                             <li><strong>Durasi</strong>: {{ $jadwalTayang->film->durasi }} menit</li>
-                            <li><strong>Teater</strong>: {{ $jadwalTayang->teater->nama }}</li>
                             <li><strong>Studio</strong>: {{ $jadwalTayang->studio->nama }}</li>
+                            <li><strong>Status Tiket</strong>: {{ $jadwalTayang->tipe }}</li>
                             <li><strong>Harga Tiket</strong>: Rp.{{ $jadwalTayang->harga }}</li>
                         </ul>
                         <p style="margin: 0"><strong>Jadwal Tayang :</strong></p>
@@ -37,6 +37,16 @@
                         </p>
                     </div>
                 </div>
+                @if (!empty($jadwalTayang->film->embed_yt))
+                    <div class="col-md-8 offset-md-2 mt-4">
+                        <div class="card">
+                            <div class="card-body text-center">
+                                <h5>Trailer Film</h5>
+                                {!! $jadwalTayang->film->embed_yt !!}
+                            </div>
+                        </div>
+                    </div>
+                @endif
             </div>
         </div>
     </section>
@@ -65,9 +75,9 @@
                             </div>
                             <div class="col-md-12">
                                 <div class="form-group mt-3">
-                                    <label class="form-label">Teater :</label>
+                                    <label class="form-label">Tipe :</label>
                                     <select class="form-select" disabled>
-                                        <option selected>{{ $jadwalTayang->teater->nama }}</option>
+                                        <option selected>{{ $jadwalTayang->tipe }}</option>
                                     </select>
                                 </div>
                             </div>

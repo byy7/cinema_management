@@ -54,6 +54,15 @@
                             </div>
                             <div class="col-md-12">
                                 <div class="form-group">
+                                    <label class="form-label" for="embed_yt">Trailer Film (Link Embed Youtube) :</label>
+                                    <textarea name="embed_yt" id="embed_yt" class="form-control" rows="3"></textarea>
+                                    @error('embed_yt')
+                                        <span class="text-danger">{{ $message }}</span>
+                                    @enderror
+                                </div>
+                            </div>
+                            <div class="col-md-12">
+                                <div class="form-group">
                                     <label class="form-label" for="gambar">Gambar (Maks 1 MB | Jpg,Jpeg,Png) : </label>
                                     <input type="file" name="gambar" class="form-control" id="gambar">
                                     @error('gambar')

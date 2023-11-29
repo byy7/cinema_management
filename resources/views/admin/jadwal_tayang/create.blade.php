@@ -13,30 +13,24 @@
                     <form action="{{ route('jadwal_tayang.store') }}" method="post" enctype="multipart/form-data">
                         @csrf
                         <div class="row">
-                                <div class="col-md-12">
-                                    <div class="form-group">
-                                        <label class="form-label">Film :</label>
-                                        <select name="id_film" class="form-select select2">
-                                            @foreach ($films as $item1)
-                                                <option value="{{ $item1->id }}">{{ $item1->judul }}</option>
-                                            @endforeach
-                                        </select>
-                                        @error('id_film')
-                                            <span class="text-danger">{{ $message }}</span>
-                                        @enderror
-                                    </div>
-                                </div>
-                            <div class="col-md-6">
+                            <div class="col-md-12">
                                 <div class="form-group">
-                                    <label class="form-label">Teater :</label>
-                                    <select name="id_teater" class="form-select select2">
-                                        @foreach ($teaters as $item2)
-                                            <option value="{{ $item2->id }}">{{ $item2->nama }}</option>
+                                    <label class="form-label">Film :</label>
+                                    <select name="id_film" class="form-select select2">
+                                        @foreach ($films as $item1)
+                                            <option value="{{ $item1->id }}">{{ $item1->judul }}</option>
                                         @endforeach
                                     </select>
-                                    @error('id_teater')
-                                        <span class="text-danger">{{ $message }}</span>
-                                    @enderror
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="form-label">Tipe :</label>
+                                    <select name="tipe" class="form-select select2">
+                                        @foreach (\App\Models\JadwalTayang::TYPE_SELECT as $key => $value)
+                                            <option value="{{ $key }}">{{ $value }}</option>
+                                        @endforeach
+                                    </select>
                                 </div>
                             </div>
                             <div class="col-md-6">
@@ -47,9 +41,6 @@
                                             <option value="{{ $item3->id }}">{{ $item3->nama }}</option>
                                         @endforeach
                                     </select>
-                                    @error('id_studio')
-                                        <span class="text-danger">{{ $message }}</span>
-                                    @enderror
                                 </div>
                             </div>
                             <div class="col-md-6">
@@ -72,11 +63,8 @@
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label class="form-label" for="harga">Harga : </label>
+                                    <label for="harga">Harga :</label>
                                     <input type="number" name="harga" class="form-control" id="harga">
-                                    @error('harga')
-                                        <span class="text-danger">{{ $message }}</span>
-                                    @enderror
                                 </div>
                                 <div class="text-end">
                                     <a href="{{ route('jadwal_tayang.index') }}" class="btn btn-danger">Kembali</a>

@@ -15,22 +15,19 @@
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="form-group">
-                                    <label class="form-label">Teater :</label>
-                                    <select name="id_teater" class="form-select" id="select2">
-                                        @foreach ($teaters as $item)
-                                            <option value="{{ $item->id }}">{{ $item->nama }}</option>
-                                        @endforeach
-                                    </select>
-                                    @error('id_teater')
+                                    <label class="form-label" for="nama">Nama : </label>
+                                    <input type="text" name="nama" class="form-control" id="nama">
+                                    @error('nama')
                                         <span class="text-danger">{{ $message }}</span>
                                     @enderror
                                 </div>
                             </div>
                             <div class="col-md-12">
                                 <div class="form-group">
-                                    <label class="form-label" for="gambar">Nama : </label>
-                                    <input type="text" name="nama" class="form-control" id="nama">
-                                    @error('nama')
+                                    <label class="form-label" for="denah_kursi">Denah Kursi (Maks 1 MB | Jpg,Jpeg,Png) :
+                                    </label>
+                                    <input type="file" name="denah_kursi" class="form-control" id="denah_kursi">
+                                    @error('denah_kursi')
                                         <span class="text-danger">{{ $message }}</span>
                                     @enderror
                                 </div>

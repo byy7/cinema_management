@@ -11,6 +11,14 @@ class JadwalTayang extends Model
 
     protected $guarded = ['id'];
 
+    const TYPE_EKONOMI = "Ekonomi";
+    const TYPE_VIP = "VIP";
+
+    const TYPE_SELECT = [
+        self::TYPE_EKONOMI => self::TYPE_EKONOMI,
+        self::TYPE_VIP => self::TYPE_VIP,
+    ];
+
     public function film()
     {
         return $this->belongsTo(Film::class, 'id_film', 'id');
@@ -19,10 +27,5 @@ class JadwalTayang extends Model
     public function studio()
     {
         return $this->belongsTo(Studio::class, 'id_studio', 'id');
-    }
-
-    public function teater()
-    {
-        return $this->belongsTo(Teater::class, 'id_teater', 'id');
     }
 }

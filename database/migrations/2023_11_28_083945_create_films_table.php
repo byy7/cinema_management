@@ -18,6 +18,7 @@ return new class extends Migration
             $table->text('sinopsis');
             $table->integer('durasi');
             $table->string('gambar');
+            $table->text('embed_yt')->nullable();
             $table->timestamps();
         });
     }

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Pemesanan;
 use Illuminate\Http\Request;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class PemesananController extends Controller
 {
@@ -17,51 +18,29 @@ class PemesananController extends Controller
         return view('admin.pemesanan.index', compact('pemesanans'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
+    public function print()
     {
-        //
+        $pemesanans = Pemesanan::all();
+
+        return view('admin.pemesanan.print', compact('pemesanans'));
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
+    public function confirmation($id, Request $request)
     {
-        //
-    }
+        $pemesanan = Pemesanan::find($id);
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(Pemesanan $pemesanan)
-    {
-        //
-    }
+        if ($request->status == Pemesanan::STATUS_PAID) {
+            $pemesanan->update([
+                'status' => Pemesanan::STATUS_PAID
+            ]);
+        } elseif ($request->status == Pemesanan::STATUS_UNPAID) {
+            $pemesanan->update([
+                'status' => Pemesanan::STATUS_UNPAID
+            ]);
+        }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(Pemesanan $pemesanan)
-    {
-        //
-    }
+        Alert::toast('Data Berhasil Diperbarui', 'success');
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, Pemesanan $pemesanan)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(Pemesanan $pemesanan)
-    {
-        //
+        return redirect()->route('pemesanan.index');
     }
 }

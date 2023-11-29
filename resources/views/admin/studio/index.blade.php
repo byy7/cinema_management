@@ -22,7 +22,7 @@
                                 <tr>
                                     <th>No.</th>
                                     <th>Aksi</th>
-                                    <th>Teater</th>
+                                    <th>Denah Kursi</th>
                                     <th>Nama</th>
                                     <th>Total Kursi</th>
                                 </tr>
@@ -34,13 +34,19 @@
                                 @foreach ($studios as $item)
                                     <tr>
                                         <td>{{ $i++ }}</td>
+
                                         <td>
                                             <a href="{{ route('studio.edit', $item->id) }}"
                                                 class="btn btn-warning btn-sm">Detail</a>
                                             <a href="{{ route('studio.destroy', $item->id) }}" class="btn btn-danger btn-sm"
                                                 data-confirm-delete="true">Hapus</a>
                                         </td>
-                                        <td>{{ $item->teater->nama }}</td>
+                                        <td>
+                                            @if (!empty($item->denah_kursi))
+                                                <img src="{{ asset('assets/images/' . $item->denah_kursi) }}"
+                                                    class="img-fluid img-thumbnail" width="350" alt="image">
+                                            @endif
+                                        </td>
                                         <td>{{ $item->nama }}</td>
                                         <td>{{ $item->totalKursi() }}</td>
                                     </tr>

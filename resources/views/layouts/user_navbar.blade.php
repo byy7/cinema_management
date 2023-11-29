@@ -8,10 +8,9 @@
         <nav id="navbar" class="navbar">
             <ul>
                 <li><a class="nav-link scrollto active" href="#hero">Home</a></li>
-                <li><a class="nav-link scrollto" href="#teater">Teater</a></li>
+                <li><a class="nav-link scrollto" href="#studio">Studio</a></li>
                 <li><a class="nav-link scrollto " href="#film">Film</a></li>
-                <li><a class="nav-link scrollto" href="#tiket">Riwayat Pemesanan</a></li>
-                <li><a class="nav-link disabled">{{ Auth::user()->name }}</a></li>
+                <li><a class="nav-link scrollto" href="#tiket">Pemesanan Tiket</a></li>
                 <li>
                     <a class="getstarted"
                         onclick="event.preventDefault();

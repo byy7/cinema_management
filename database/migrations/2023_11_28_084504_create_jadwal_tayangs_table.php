@@ -15,11 +15,11 @@ return new class extends Migration
             $table->id();
             $table->foreignId('id_film')->constrained('films')->cascadeOnUpdate()->cascadeOnDelete();
             $table->foreignId('id_studio')->constrained('studios')->cascadeOnUpdate()->cascadeOnDelete();
-            $table->foreignId('id_teater')->constrained('teaters')->cascadeOnUpdate()->cascadeOnDelete();
             $table->date('tanggal_tayang');
             $table->time('waktu_mulai');
-            $table->time('waktu_selesai');      
+            $table->time('waktu_selesai');
             $table->float('harga');
+            $table->string('tipe');
             $table->timestamps();
         });
     }

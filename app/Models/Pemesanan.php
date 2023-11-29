@@ -11,6 +11,11 @@ class Pemesanan extends Model
 
     protected $guarded = ['id'];
 
+    const STATUS_NOT_PAID = "Belum Bayar";
+    const STATUS_ON_PROGRESS = "Menunggu Konfirmasi";
+    const STATUS_PAID = "Sudah Bayar";
+    const STATUS_UNPAID = "Pembayaran Ditolak";
+
     public function jadwalTayang()
     {
         return $this->belongsTo(JadwalTayang::class, 'id_jadwal_tayang', 'id');

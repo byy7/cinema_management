@@ -15,21 +15,22 @@
 
 @section('content')
     <!-- ======= Services Section ======= -->
-    <section id="teater" class="services">
+    <section id="studio" class="services">
         <div class="container" data-aos="fade-up">
 
             <div class="section-title">
-                <h2>Teater</h2>
-                <p>Berikut merupakan teater dari CGW Cinema</p>
+                <h2>Studio</h2>
+                <p>Berikut merupakan studio dari CGW Cinema</p>
             </div>
 
             <div class="row">
-                @forelse ($teaters as $item)
+                @forelse ($studios as $item)
                     <div class="col-md-6 col-lg-3 d-flex align-items-stretch mb-5 mb-lg-0" data-aos="fade-up"
                         data-aos-delay="100">
                         <div class="icon-box">
                             <div class="icon">
-                                <img src="{{ asset('assets/images/' . $item->gambar) }}" alt="Images" class="img-fluid">
+                                <img src="{{ asset('assets/images/' . $item->denah_kursi) }}" alt="Images"
+                                    class="img-fluid">
                             </div>
                             <h4 class="title">{{ $item->nama }}</h4>
                         </div>
@@ -100,11 +101,12 @@
                                 <tr>
                                     <th class="text-center">No</th>
                                     <th class="text-center">Film</th>
-                                    <th class="text-center">Teater</th>
                                     <th class="text-center">Studio</th>
                                     <th class="text-center">Kursi</th>
                                     <th class="text-center">Waktu</th>
                                     <th class="text-center">Harga</th>
+                                    <th class="text-center">Status Pembayaran</th>
+                                    <th class="text-center">Aksi</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -115,7 +117,6 @@
                                     <tr class="text-center">
                                         <td>{{ $i++ }}</td>
                                         <td>{{ $item->jadwalTayang->film->judul }}</td>
-                                        <td>{{ $item->jadwalTayang->teater->nama }}</td>
                                         <td>{{ $item->jadwalTayang->studio->nama }}</td>
                                         <td>{{ $item->kursi->nama }}</td>
                                         <td>{{ \Carbon\Carbon::parse($item->jadwalTayang->tanggal_tayang)->translatedFormat('d F Y') }}
@@ -125,6 +126,13 @@
                                             {{ \Carbon\Carbon::parse($item->jadwalTayang->waktu_selesai)->translatedformat('H:i') }}
                                         </td>
                                         <td>Rp.{{ $item->jadwalTayang->harga }}</td>
+                                        <td>{{ $item->status }}</td>
+                                        <td>
+                                            @if ($item->status == \App\Models\Pemesanan::STATUS_NOT_PAID)
+                                                <a href="{{ route('payment', $item->id) }}"
+                                                    class="btn btn-primary">Bayar</a>
+                                            @endif
+                                        </td>
                                     </tr>
                                 @endforeach
                             </tbody>

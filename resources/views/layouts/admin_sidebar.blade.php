@@ -98,22 +98,6 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link {{ Request::is('teater*') ? 'active' : '' }}"
-                                href="{{ route('teater.index') }}">
-                                <i class="icon svg-icon">
-                                    <svg class="icon-10" xmlns="http://www.w3.org/2000/svg" width="10"
-                                        viewBox="0 0 24 24" fill="currentColor">
-                                        <g>
-                                            <circle cx="12" cy="12" r="8"
-                                                fill="currentColor"></circle>
-                                        </g>
-                                    </svg>
-                                </i>
-                                <i class="sidenav-mini-icon"> T </i>
-                                <span class="item-name">Teater</span>
-                            </a>
-                        </li>
-                        <li class="nav-item">
                             <a class="nav-link {{ Request::is('studio*') ? 'active' : '' }}"
                                 href="{{ route('studio.index') }}">
                                 <i class="icon svg-icon">
@@ -157,8 +141,8 @@
                                         </g>
                                     </svg>
                                 </i>
-                                <i class="sidenav-mini-icon"> RP </i>
-                                <span class="item-name">Riwayat Pesanan </span>
+                                <i class="sidenav-mini-icon"> P </i>
+                                <span class="item-name">Pemesanan </span>
                             </a>
                         </li>
                         <li class="nav-item">

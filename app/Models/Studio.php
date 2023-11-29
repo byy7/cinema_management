@@ -11,11 +11,6 @@ class Studio extends Model
 
     protected $guarded = ['id'];
 
-    public function teater()
-    {
-        return $this->belongsTo(Teater::class, 'id_teater', 'id');
-    }
-
     public function kursis()
     {
         return $this->hasMany(Kursi::class, 'id_studio', 'id');
