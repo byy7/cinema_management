@@ -3,11 +3,12 @@
 @section('content-header')
     <section id="hero" class="d-flex align-items-center">
         <div class="container d-flex flex-column align-items-center justify-content-center" data-aos="fade-up">
+
             <h1>Hai, Selamat Datang {{ Auth::user()->name }}</h1>
             <h2>Nikmati Nonton Ceria Bersama CGW Cinema</h2>
-            <a href="#film" class="btn-get-started scrollto">Selengkapnya</a>
-            <img src="{{ asset('assets/images/28946.jpg') }}" class="img-fluid hero-img img-thumbnail" alt="Image"
+            <img src="{{ asset('assets/images/28945.jpg') }}" class="img-fluid hero-img img-thumbnail" alt="Image"
                 data-aos="zoom-in" data-aos-delay="150" width="350px">
+            <a href="#film" class="btn-get-started scrollto">Selengkapnya</a>
         </div>
     </section>
 @endsection
