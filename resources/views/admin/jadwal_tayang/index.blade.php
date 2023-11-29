@@ -26,7 +26,6 @@
                                     <th>Film</th>
                                     <th>Teater</th>
                                     <th>Studio</th>
-                                    <th>Tanggal Tayang</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -49,7 +48,6 @@
                                         <td>{{ $item->film->judul }}</td>
                                         <td>{{ $item->teater->nama }}</td>
                                         <td>{{ $item->studio->nama }}</td>
-                                        <td>{{ $item->tanggal_tayang }}</td>
                                     </tr>
                                 @endforeach
                             </tbody>

@@ -63,18 +63,12 @@
                                 <h3>{{ $item->film->judul }}</h3>
                                 <h4><b>Rp.{{ $item->harga }}</b></h4>
                                 <hr>
-                                <p style="margin: 0">Sinopsis:</p>
-                                <p align="justify">{{ $item->film->sinopsis }}</p>
-                                <h6><strong>{{ $item->teater->nama }} - {{ $item->studio->nama }}</strong></h6>
-                                <hr>
-
-                                <h6>Tanggal {{ \Carbon\Carbon::parse($item->tanggal_tayang)->format('d/m/Y') }}</h6>
-                                <h6>Pukul {{ \Carbon\Carbon::parse($item->jam_mulai)->format('H:i') }} -
-                                    {{ \Carbon\Carbon::parse($item->jam_selesai)->format('H:i') }}</h6>
-                                <button type="button" class="btn btn-outline-primary mb-4 mt-3" data-bs-toggle="modal"
-                                    data-bs-target="#staticBackdrop">
-                                    Pesan Tiket
-                                </button>
+                                <h6> {{ \Carbon\Carbon::parse($item->tanggal_tayang)->translatedFormat('d F Y') }}
+                                </h6>
+                                <h6>{{ \Carbon\Carbon::parse($item->waktu_mulai)->translatedformat('H:i') }} -
+                                    {{ \Carbon\Carbon::parse($item->waktu_selesai)->translatedformat('H:i') }}</h6>
+                                <a href="{{ route('detail_film', $item->id) }}"
+                                    class="btn btn-outline-primary mt-3 mb-5">Detail</a>
                             </div>
                         </div>
                     @empty
@@ -98,36 +92,38 @@
 
             <div class="row mt-4">
                 <div class="col-xl-12 col-lg-12 col-md-6" data-aos="fade-up" data-aos-delay="100">
-                    <button type="button" class="btn btn-outline-primary mb-4" data-bs-toggle="modal"
-                        data-bs-target="#staticBackdrop">
-                        Pesan Tiket
-                    </button>
+                    <a href="#film" class="btn btn-outline-primary mb-4">Pesan Tiket</a>
                     <div class="table-responsive">
                         <table class="table table-bordered table-hover" style="width: 100%" id="datatable">
                             <thead>
                                 <tr>
-                                    <th>No</th>
-                                    <th>Film</th>
-                                    <th>Teater</th>
-                                    <th>Studio</th>
-                                    <th>Tanggal</th>
-                                    <th>Harga</th>
-                                    <th>Kursi</th>
+                                    <th class="text-center">No</th>
+                                    <th class="text-center">Film</th>
+                                    <th class="text-center">Teater</th>
+                                    <th class="text-center">Studio</th>
+                                    <th class="text-center">Kursi</th>
+                                    <th class="text-center">Waktu</th>
+                                    <th class="text-center">Harga</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 @php
-                                    $i = 0;
+                                    $i = 1;
                                 @endphp
                                 @foreach ($pemesanans as $item)
-                                    <tr>
+                                    <tr class="text-center">
                                         <td>{{ $i++ }}</td>
                                         <td>{{ $item->jadwalTayang->film->judul }}</td>
                                         <td>{{ $item->jadwalTayang->teater->nama }}</td>
                                         <td>{{ $item->jadwalTayang->studio->nama }}</td>
-                                        <td>{{ $item->jadwalTayang->tanggal_tayang }}</td>
-                                        <td>Rp.{{ $item->jadwalTayang->harga }}</td>
                                         <td>{{ $item->kursi->nama }}</td>
+                                        <td>{{ \Carbon\Carbon::parse($item->jadwalTayang->tanggal_tayang)->translatedFormat('d F Y') }}
+                                            |
+                                            {{ \Carbon\Carbon::parse($item->jadwalTayang->waktu_mulai)->translatedformat('H:i') }}
+                                            -
+                                            {{ \Carbon\Carbon::parse($item->jadwalTayang->waktu_selesai)->translatedformat('H:i') }}
+                                        </td>
+                                        <td>Rp.{{ $item->jadwalTayang->harga }}</td>
                                     </tr>
                                 @endforeach
                             </tbody>
@@ -138,34 +134,6 @@
 
         </div>
     </section>
-
-    <!-- Modal -->
-    <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
-        aria-labelledby="staticBackdropLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h1 class="modal-title fs-5" id="staticBackdropLabel">Pemesanan Tiket</h1>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <form action="" method="post">
-                    @csrf
-                    <div class="modal-body">
-                        <div class="row">
-                            <div class="col-md-12">
-                                <label for="nama">Nama</label>
-                                <input type="text" name="nama" id="nama" class="form-control".>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
-                        <button type="submit" class="btn btn-primary">Simpan</button>
-                    </div>
-                </form>
-            </div>
-        </div>
-    </div>
 @endsection
 
 @section('js_after')

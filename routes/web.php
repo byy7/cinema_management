@@ -47,6 +47,7 @@ Route::middleware(['auth'])->group(function () {
 
     Route::middleware(['user'])->group(function () {
         Route::get('/user', [UserController::class, 'index'])->name('user');
+        Route::get('/detail_film/{id}', [UserController::class, 'detail_film'])->name('detail_film');
         Route::post('/store_ticket', [UserController::class, 'store_ticket'])->name('store_ticket');
     });
 });

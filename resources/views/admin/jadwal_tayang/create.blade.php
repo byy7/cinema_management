@@ -13,19 +13,19 @@
                     <form action="{{ route('jadwal_tayang.store') }}" method="post" enctype="multipart/form-data">
                         @csrf
                         <div class="row">
-                            <div class="col-md-12">
-                                <div class="form-group">
-                                    <label class="form-label">Film :</label>
-                                    <select name="id_film" class="form-select select2">
-                                        @foreach ($films as $item1)
-                                            <option value="{{ $item1->id }}">{{ $item1->judul }}</option>
-                                        @endforeach
-                                    </select>
-                                    @error('id_film')
-                                        <span class="text-danger">{{ $message }}</span>
-                                    @enderror
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label class="form-label">Film :</label>
+                                        <select name="id_film" class="form-select select2">
+                                            @foreach ($films as $item1)
+                                                <option value="{{ $item1->id }}">{{ $item1->judul }}</option>
+                                            @endforeach
+                                        </select>
+                                        @error('id_film')
+                                            <span class="text-danger">{{ $message }}</span>
+                                        @enderror
+                                    </div>
                                 </div>
-                            </div>
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label class="form-label">Teater :</label>

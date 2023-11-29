@@ -29,7 +29,7 @@
                                         <td>{{ $i++ }}</td>
                                         <td>{{ $item->jadwalTayang->film->judul }}</td>
                                         <td>{{ $item->user->name }}</td>
-                                        <td>@RupiahFormat($item->jadwalTayang->harga)</td>
+                                        <td>Rp.{{ $item->jadwalTayang->harga }}</td>
                                     </tr>
                                 @endforeach
                             </tbody>
