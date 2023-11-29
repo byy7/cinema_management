@@ -41,7 +41,7 @@ class FilmController extends Controller
             'judul' => 'required',
             'sinopsis' => 'required',
             'durasi' => 'required',
-            'gambar' => 'required|mimes:jpg,jpeg,png | max:1024'
+            'gambar' => 'required|mimes:jpg,jpeg,png|max:1024'
         ]);
 
         $input = $request->all();
@@ -86,7 +86,7 @@ class FilmController extends Controller
             'judul' => 'required',
             'sinopsis' => 'required',
             'durasi' => 'required',
-            'gambar' => 'mimes:jpg,jpeg,png | max:1024'
+            'gambar' => 'mimes:jpg,jpeg,png|max:1024'
         ]);
 
         $input = $request->all();

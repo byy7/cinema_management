@@ -80,7 +80,7 @@ class TeaterController extends Controller
     {
         $request->validate([
             'nama' => 'required',
-            'gambar' => 'mimes:jpg,jpeg,png | max:1024'
+            'gambar' => 'mimes:jpg,jpeg,png|max:1024'
         ]);
 
         $input = $request->all();

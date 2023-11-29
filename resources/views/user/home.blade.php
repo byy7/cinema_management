@@ -31,12 +31,12 @@
                             <div class="icon">
                                 <img src="{{ asset('assets/images/' . $item->gambar) }}" alt="Images" class="img-fluid">
                             </div>
-                            <h4 class="title"><a href="">Lorem Ipsum</a></h4>
+                            <h4 class="title">{{ $item->nama }}</h4>
                         </div>
                     </div>
                 @empty
                     <div class="col-md-12">
-                        <div class="text-center">
+                        <div class="text-center text-white">
                             <h3><strong>Data Belum Tersedia</strong></h3>
                         </div>
                     </div>
