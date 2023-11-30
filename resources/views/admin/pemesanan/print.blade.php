@@ -20,6 +20,8 @@
                 <div class="col-lg-12">
                     <div class="text-center">
                         <h4>LAPORAN PEMESANAN TIKET</h4>
+                        <p>{{ \Carbon\Carbon::parse($tgl_awal)->translatedFormat('d F Y') }} s.d.
+                            {{ \Carbon\Carbon::parse($tgl_akhir)->translatedFormat('d F Y') }}</p>
                     </div>
                     <br><br>
                     <div class="table-responsive">

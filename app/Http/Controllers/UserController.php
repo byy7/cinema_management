@@ -46,6 +46,13 @@ class UserController extends Controller
         return view('user.payment', compact('jadwalTayang', 'pemesanan'));
     }
 
+    public function ticket($id)
+    {
+        $pemesanan = Pemesanan::find($id);
+
+        return view('user.ticket', compact('pemesanan'));
+    }
+
     public function update_payment($id, Request $request)
     {
         $pemesanan = Pemesanan::find($id);

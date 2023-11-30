@@ -17,7 +17,7 @@
                             <div class="col-md-12">
                                 <div class="form-group">
                                     <label class="form-label" for="nama">Nama : </label>
-                                    <input type="text" name="nama" class="form-control" id="nama">
+                                    <input type="text" name="nama" class="form-control" id="nama" value="{{ $studio->nama }}">
                                     @error('nama')
                                         <span class="text-danger">{{ $message }}</span>
                                     @enderror

@@ -10,8 +10,28 @@
                     </div>
                 </div>
                 <div class="card-body">
-                    <a target="_blank" href="{{ route('pemesanan.print') }}" class="btn btn-outline-primary mb-4">
-                        Cetak Laporan</a>
+                    <div class="row">
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label for="tgl_awal">Tanggal Awal</label>
+                                <input type="date" onclick="this.showPicker()" id="tgl_awal" class="form-control"
+                                    value="{{ $startOfMonth }}">
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label for="tgl_akhir">Tanggal Akhir</label>
+                                <input type="date" onclick="this.showPicker()" id="tgl_akhir" class="form-control"
+                                    value="{{ $endOfMonth }}">
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <br>
+                            <a target="_blank" href="" class="btn btn-outline-primary mb-4" id="btn_print">
+                                Cetak Laporan</a>
+                        </div>
+                    </div>
+
                     <div class="table-responsive">
                         <table id="datatable" class="table table-bordered no-wrap">
                             <thead>
@@ -35,13 +55,13 @@
                                         <td>
                                             @if ($item->status == \App\Models\Pemesanan::STATUS_ON_PROGRESS)
                                                 <div class="btn-group">
-                                                    <button type="button" class="btn btn-success btn-sm" data-bs-toggle="modal"
-                                                        data-bs-target="#staticBackdrop">
+                                                    <button type="button" class="btn btn-success btn-sm"
+                                                        data-bs-toggle="modal" data-bs-target="#staticBackdrop">
                                                         Terima Pembayaran
                                                     </button>
 
-                                                    <button type="button" class="btn btn-danger btn-sm" data-bs-toggle="modal"
-                                                        data-bs-target="#staticBackdropReject">
+                                                    <button type="button" class="btn btn-danger btn-sm"
+                                                        data-bs-toggle="modal" data-bs-target="#staticBackdropReject">
                                                         Tolak Pembayaran
                                                     </button>
                                                 </div>
@@ -111,8 +131,9 @@
                                                 </div>
                                             @endif
                                         </td>
-                                        <td><a target="_blank" class="btn btn-primary" href="{{ asset('assets/images/' . $item->file) }}">Lihat File</a>
-                                            </td>
+                                        <td><a target="_blank" class="btn btn-primary"
+                                                href="{{ asset('assets/images/' . $item->file) }}">Lihat File</a>
+                                        </td>
                                         <td>{{ $item->jadwalTayang->film->judul }}</td>
                                         <td>{{ $item->user->name }}</td>
                                         <td>Rp{{ $item->jadwalTayang->harga }}</td>
@@ -132,6 +153,13 @@
     <script>
         $(document).ready(function() {
             $("#datatable").dataTable();
+
+            $("#btn_print").click(function() {
+                let tgl_awal = $("#tgl_awal").val();
+                let tgl_akhir = $("#tgl_akhir").val();
+                let route = '/print/' + tgl_awal + '/' + tgl_akhir;
+                this.href = route;
+            })
         });
     </script>
 @endsection

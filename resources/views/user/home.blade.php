@@ -125,12 +125,18 @@
                                             -
                                             {{ \Carbon\Carbon::parse($item->jadwalTayang->waktu_selesai)->translatedformat('H:i') }}
                                         </td>
-                                        <td>Rp.{{ $item->jadwalTayang->harga }}</td>
+                                        <td>Rp.{{ $item->jadwalTayang->harga }} <strong>({{ $item->jadwalTayang->tipe }})</strong>
+                                        </td>
                                         <td>{{ $item->status }}</td>
                                         <td>
                                             @if ($item->status == \App\Models\Pemesanan::STATUS_NOT_PAID)
                                                 <a href="{{ route('payment', $item->id) }}"
                                                     class="btn btn-primary">Bayar</a>
+                                            @endif
+                                            @if ($item->status == \App\Models\Pemesanan::STATUS_PAID)
+                                                <a target="_blank" href="{{ route('ticket', $item->id) }}"
+                                                    class="btn btn-primary">
+                                                    Tiket</a>
                                             @endif
                                         </td>
                                     </tr>

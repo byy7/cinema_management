@@ -41,7 +41,7 @@ Route::middleware(['auth'])->group(function () {
         Route::post('/store_kursi', [StudioController::class, 'store_kursi'])->name('store_kursi');
         Route::resource('jadwal_tayang', JadwalTayangController::class);
         Route::resource('pemesanan', PemesananController::class);
-        Route::get('/print', [PemesananController::class, 'print'])->name('pemesanan.print');
+        Route::get('/print/{tgl_awal}/{tgl_akhir}', [PemesananController::class, 'print'])->name('pemesanan.print');
         Route::put('/confirmation/{id}', [PemesananController::class, 'confirmation'])->name('pemesanan.confirmation');
     });
 
@@ -49,6 +49,7 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/user', [UserController::class, 'index'])->name('user');
         Route::get('/detail_film/{id}', [UserController::class, 'detail_film'])->name('detail_film');
         Route::get('/payment/{id}', [UserController::class, 'payment'])->name('payment');
+        Route::get('/ticket/{id}', [UserController::class, 'ticket'])->name('ticket');
         Route::put('/update_payment/{id}', [UserController::class, 'update_payment'])->name('update_payment');
         Route::post('/store_ticket', [UserController::class, 'store_ticket'])->name('store_ticket');
     });

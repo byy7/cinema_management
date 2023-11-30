@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Pemesanan;
 use Illuminate\Http\Request;
+use Illuminate\Support\Carbon;
 use RealRashid\SweetAlert\Facades\Alert;
 
 class PemesananController extends Controller
@@ -15,14 +16,22 @@ class PemesananController extends Controller
     {
         $pemesanans = Pemesanan::all();
 
-        return view('admin.pemesanan.index', compact('pemesanans'));
+        $date = Carbon::now();
+
+        $getStartOfMonth = $date->copy()->startOfMonth();
+        $getEndOfMonth = $date->copy()->endOfMonth();
+
+        $startOfMonth = Carbon::parse($getStartOfMonth)->format('Y-m-d');
+        $endOfMonth = Carbon::parse($getEndOfMonth)->format('Y-m-d');
+
+        return view('admin.pemesanan.index', compact('pemesanans', 'startOfMonth', 'endOfMonth'));
     }
 
-    public function print()
+    public function print($tgl_awal, $tgl_akhir)
     {
-        $pemesanans = Pemesanan::all();
+        $pemesanans = Pemesanan::whereBetween('created_at', [$tgl_awal, $tgl_akhir])->get();
 
-        return view('admin.pemesanan.print', compact('pemesanans'));
+        return view('admin.pemesanan.print', compact('pemesanans', 'tgl_awal', 'tgl_akhir'));
     }
 
     public function confirmation($id, Request $request)
